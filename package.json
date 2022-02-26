@@ -1,0 +1,43 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --experimental-specifier-resolution=node src/app.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules PGDATABASE=bookmarklytest npx jest --watchAll",
+    "db:migrate:create:db:dev": "db-migrate db:create bookmarkly --config database.json -e dev",
+    "db:migrate:create:db:test": "db-migrate db:create bookmarklytest --config database.json -e test",
+    "db:migrate:drop:db:dev": "db-migrate db:drop bookmarkly --config database.json -e dev",
+    "db:migrate:drop:db:test": "db-migrate db:drop bookmarklytest --config database.json -e test",
+    "db:migrate:up:dev": "NODE_OPTIONS=--experimental-vm-modules node node_modules/db-migrate/bin/db-migrate up --verbose --config database.json -e dev",
+    "db:migrate:up:test": "NODE_OPTIONS=--experimental-vm-modules node node_modules/db-migrate/bin/db-migrate up --verbose --config database.json -e test",
+    "db:migrate:down:dev": "db-migrate down --config database.json -e dev",
+    "db:migrate:down:test": "db-migrate down --config database.json -e test",
+    "db:migrate:reset:dev": "db-migrate reset --config database.json -e dev",
+    "db:migrate:reset:test": "db-migrate reset --config database.json -e test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^10.1.1",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "dotenv": "^14.3.2",
+    "joi": "^17.6.0",
+    "knex": "^1.0.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-logger": "^3.2.1",
+    "koa-views": "^8.0.0",
+    "koa-views-render": "0.0.1",
+    "pg": "^8.7.3",
+    "re2": "^1.17.4",
+    "url-regex-safe": "^3.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "supertest": "^6.2.2"
+  }
+}
